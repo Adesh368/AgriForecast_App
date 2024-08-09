@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:location_app/model/crop_data.dart';
@@ -11,16 +12,15 @@ class InputProvider with ChangeNotifier {
       required String year,
       required String language,
       required String city}) async {
-    const String _apiKey = String.fromEnvironment('API_KEY');
+    final apiKey = dotenv.env['ANOTHER_API_KEY_GEMINI'];
 
-    if (_apiKey.isEmpty) {
-      print('No \$API_KEY environment variable');
+    if (apiKey == null) {
+      print('No \$apikey environment variable');
       return;
     }
 
-    // print(_apiKey);
     final url = Uri.parse(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$_apiKey');
+        'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=$apiKey');
     try {
       final response = await http.post(
         url,

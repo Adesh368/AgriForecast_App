@@ -61,9 +61,9 @@ class _ResponseScreenState extends State<ResponseScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(
-                child: Text('Error: ${snapshot.error}',
-                    style: const TextStyle(color: Colors.red)));
+            return const Center(
+                child: Text('Google Gemini not availlable at the moment',
+                    style:  TextStyle(color: Colors.red)));
           } else {
             final model = Provider.of<InputProvider>(context, listen: false).cropData;
             if(model == null){

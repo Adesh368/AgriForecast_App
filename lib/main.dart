@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:location_app/state/input_provider.dart';
 import 'package:location_app/state/map_screen.dart';
 import 'package:location_app/state/sign_in_provider.dart';
@@ -7,7 +8,9 @@ import 'package:provider/provider.dart';
 import 'package:location_app/screens/splash.dart';
 import 'package:location_app/state/splash.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+   await dotenv.load();
   runApp(
     MultiProvider(
       providers: [
